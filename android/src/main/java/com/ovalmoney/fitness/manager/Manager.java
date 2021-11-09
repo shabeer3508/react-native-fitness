@@ -58,6 +58,7 @@ import static com.ovalmoney.fitness.permission.Permissions.SLEEP_ANALYSIS;
 
 public class Manager implements ActivityEventListener {
 
+    private final static String TAG = "FIT_MAN";
     private final static int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 111;
     private final static int GOOGLE_PLAY_SERVICE_ERROR_DIALOG = 2404;
     private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
