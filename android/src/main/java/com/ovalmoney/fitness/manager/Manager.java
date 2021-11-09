@@ -444,9 +444,21 @@ public class Manager implements ActivityEventListener {
     }
 
     private void processStep(DataSet dataSet, WritableArray map) {
-
+                                                                                                    
         for (DataPoint dp : dataSet.getDataPoints()) {
             for(Field field : dp.getDataType().getFields()) {
+
+                DataSource ds = dp.getOriginalDataSource();
+                String streamId = ds.getStreamName();   
+                Log.i(TAG,": streamId : " + streamId);
+                Log.i(TAG,": field name : " + field.getName());
+                Log.i(TAG,": quantity : " + dp.getValue(field).asInt());
+
+                if("user_input".equals(dp.getOriginalDataSource().getStreamName())){
+                    Log.i(TAG,"skiping quantity === "+dp.getValue(field).asInt());
+                    continue;
+                }                                                            
+
                 WritableMap stepMap = Arguments.createMap();
                 stepMap.putString("startDate", dateFormat.format(dp.getStartTime(TimeUnit.MILLISECONDS)));
                 stepMap.putString("endDate", dateFormat.format(dp.getEndTime(TimeUnit.MILLISECONDS)));
